@@ -1,6 +1,6 @@
 ///Starting Anime Variable///
 
-var anime = [
+var animeArray = [
     'One Piece',
     'Hunter x Hunter',
     'My Hero Academia',
@@ -21,21 +21,19 @@ $(document).ready(function () {
 
     function btnRender() {
 
-        for (var i = 0; i < anime.length; i++) {
+        for (var i = 0; i < animeArray.length; i++) {
             var animebtn = $('<button>')
-            animebtn.text(anime[i]);
+            animebtn.text(animeArray[i]);
             animebtn.addClass('anime-button');
-            animebtn.attr('data-name', anime[i]);
+            animebtn.attr('data-name', animeArray[i]);
             $('#anime-buttons').append(animebtn);
         }
 
     }
-
-});
-
-function animeDisplay() {
     $("button").on("click", function () {
-        var anime = $(this).attr("anime-buttons");
+        var anime = $(this).attr("data-name");
+
+        console.log(anime);
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             anime + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
@@ -52,7 +50,7 @@ function animeDisplay() {
                     var animeImage = $("<img>");
                     animeImage.attr("src", results[i].images.fixed_height.url);
 
-                    gifDiv.prepend(p);
+
                     gifDiv.prepend(animeImage);
 
                     $("#anime-gifs").prepend(gifDiv);
@@ -61,5 +59,8 @@ function animeDisplay() {
                 }
             });
     });
-}
+});
+
+
+
 
