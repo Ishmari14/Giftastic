@@ -61,6 +61,9 @@ $(document).ready(function () {
     });
 });
 
+$("#anime-input").on('click', function () {
 
+
+});
 
 
