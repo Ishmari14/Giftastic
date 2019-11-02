@@ -61,7 +61,20 @@ $(document).ready(function () {
     });
 });
 
-$("#anime-input").on('click', function () {
+///search user input anime///
+
+$("#add-anime").on('click', function () {
+
+    var newAnime = $('#anime-input').val().toLowerCase().trim();
+    console.log(newAnime);
+
+    ///new user input///
+
+    for (var i = 0; i < animeArray.length; i++) {
+        if (animeArray[i] == newAnime) {
+
+        }
+    }
 
 
 });
