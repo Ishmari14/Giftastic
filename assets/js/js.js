@@ -85,14 +85,7 @@ $("#add-anime").on('click', function () {
 
 
         }
-        else {
-            alert("You already have a " + newAnime + " button!")
-        }
-
-        return false;
     }
-
-
 
 
 });
