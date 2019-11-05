@@ -73,8 +73,26 @@ $("#add-anime").on('click', function () {
     for (var i = 0; i < animeArray.length; i++) {
         if (animeArray[i] == newAnime) {
 
+            if (newAnime == "") {
+                alert("Sorry. No empty buttons are allowed!")
+            }
+
         }
+        else if (newAnime) {
+
+
+            animeArray.push(newAnime);
+
+
+        }
+        else {
+            alert("You already have a " + newAnime + " button!")
+        }
+
+        return false;
     }
+
+
 
 
 });
