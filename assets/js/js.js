@@ -13,6 +13,8 @@ var animeArray = [
     'Demon Slayer'
 ];
 
+///new anime var///
+
 ///render intial buttons///
 
 $(document).ready(function () {
@@ -65,27 +67,66 @@ $(document).ready(function () {
 
 $("#add-anime").on('click', function () {
 
-    var newAnime = $('#anime-input').val().toLowerCase().trim();
+    var newAnime = $('#anime-input').val().trim();
     console.log(newAnime);
 
     ///new user input///
 
     for (var i = 0; i < animeArray.length; i++) {
-        if (animeArray[i] == newAnime) {
 
-            if (newAnime == "") {
-                alert("Sorry. No empty buttons are allowed!")
-            }
+        if (animeArray[i] == newAnime && newAnime == "") {
 
-        }
-        else if (newAnime) {
-
-
-            animeArray.push(newAnime);
-
+            alert("Please enter valid searches!")
 
         }
     }
+
+    if (newAnime) {
+
+
+        animeArray.push(newAnime);
+
+        var btnTwo = $('<button>');
+        btnTwo.text(newAnime);
+        btnTwo.addClass('anime-button');
+        btnTwo.attr('data-name', newAnime);
+        $('#anime-buttons').append(btnTwo);
+
+
+    }
+
+    $("button").on("click", function () {
+        var anime = $(this).attr("data-name");
+
+        console.log(anime);
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            anime + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                var resultsTwo = response.data;
+
+                for (var i = 0; i < resultsTwo.length; i++) {
+                    var gifDivTwo = $("<div>");
+
+                    var animeImageTwo = $("<img>");
+                    animeImageTwo.attr("src", resultsTwo[i].images.fixed_height.url);
+
+
+                    gifDivTwo.prepend(animeImageTwo);
+
+                    $("#anime-gifs").prepend(gifDivTwo);
+
+                    console.log("working gifs");
+                }
+            });
+    });
+
+
+
 
 
 });
